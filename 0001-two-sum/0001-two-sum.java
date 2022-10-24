@@ -5,15 +5,13 @@ class Solution {
         int[] result = new int[2];
 
         for (int i = 0; i < nums.length; i++) {
-            map.put(nums[i], i);
-        }
+            int diff = target - nums[i];
 
-        for (int i = 0; i < nums.length; i++) {
-            if (map.get(target - nums[i]) != null && map.get(target - nums[i]) != i) {
-                result[0] = i;
-                result[1] = map.get(target - nums[i]);
-                break;
+            if (map.get(diff) != null && map.get(diff) != i) {
+                return new int[]{i, map.get(diff)};
             }
+
+            map.put(nums[i], i);
         }
 
         return result;
